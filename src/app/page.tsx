@@ -1,11 +1,11 @@
 "use client";
-import { useRef, useState } from "react";
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-import SkillsSection from "../components/SkillsSection";
-import ProjectsSection from "../components/ProjectsSection";
+import { useState } from "react";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import ProjectsSection from "../components/ProjectsSection";
+import SkillsSection from "../components/SkillsSection";
 import SuccessMessage from "../components/SuccessMessage";
 import { portfolioData } from "../data/portfolio";
 
@@ -24,7 +24,7 @@ export default function Home() {
     const link = document.createElement("a");
     link.href =
       "data:text/plain;charset=utf-8,Nguyen The Huy Hoang - Fullstack Developer CV";
-    link.download = "Alex_Rivera_CV.pdf";
+    link.download = "Nguyen The Huy Hoang_CV.pdf";
     link.click();
     showSuccessMessage("CV download started!");
   };
@@ -79,7 +79,7 @@ export default function Home() {
         tagline={
           "Fullstack Developer • Building the future, one line of code at a time"
         }
-        copyright={"© 2024 Nguyen The Huy Hoang. All rights reserved."}
+        copyright={"© 2025 Nguyen The Huy Hoang. All rights reserved."}
       />
       <SuccessMessage message={successMsg} show={showSuccess} />
     </div>
