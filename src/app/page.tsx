@@ -23,7 +23,7 @@ export default function Home() {
   const downloadCV = () => {
     const link = document.createElement("a");
     link.href =
-      "data:text/plain;charset=utf-8,Alex Rivera - Fullstack Developer CV";
+      "data:text/plain;charset=utf-8,Nguyen The Huy Hoang - Fullstack Developer CV";
     link.download = "Alex_Rivera_CV.pdf";
     link.click();
     showSuccessMessage("CV download started!");
@@ -79,7 +79,7 @@ export default function Home() {
         tagline={
           "Fullstack Developer • Building the future, one line of code at a time"
         }
-        copyright={"© 2024 Alex Rivera. All rights reserved."}
+        copyright={"© 2024 Nguyen The Huy Hoang. All rights reserved."}
       />
       <SuccessMessage message={successMsg} show={showSuccess} />
     </div>

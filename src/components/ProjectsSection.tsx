@@ -2,6 +2,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import Section from "./Section";
+import { motion } from "framer-motion";
 
 interface Project {
   id: number;
@@ -22,9 +24,9 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+    <Section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 fade-in">
+        <div className="text-center mb-16">
           <h2 className="section-title text-3xl md:text-4xl font-bold mb-4">
             Featured Projects
           </h2>
@@ -37,10 +39,17 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           id="projects-container"
         >
           {projects.map((project, idx) => (
-            <div
-              className="project-card slide-in-right relative"
+            <motion.div
+              className="project-card relative group"
               key={project.id}
-              style={{ transitionDelay: `${idx * 0.1}s` }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0 10px 15px -3px rgba(59,130,246,0.1)",
+              }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-6xl">
                 <span role="img" aria-label="project-image">
@@ -71,34 +80,43 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <a
+                  <motion.a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 text-center py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     <FontAwesomeIcon
                       icon={faExternalLinkAlt}
                       className="mr-1"
                     />
                     Live Demo
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 text-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     <FontAwesomeIcon icon={faGithub} className="mr-1" />
                     Code
-                  </a>
+                  </motion.a>
                 </div>
               </div>
-              <div className="project-overlay absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 transition-all">
-                <h4 className="text-xl font-bold text-white mb-4">
+              <motion.div
+                className="project-overlay absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto bg-black/60 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileHover={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <h4 className="text-xl font-bold text-white mb-4 drop-shadow">
                   {project.title}
                 </h4>
-                <div className="text-white text-sm space-y-2 max-w-xs text-center">
+                <div className="text-white text-sm space-y-2 max-w-xs text-center drop-shadow">
                   {project.features.slice(0, 3).map((feature) => (
                     <div className="flex items-center gap-2" key={feature}>
                       <FontAwesomeIcon
@@ -110,28 +128,32 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                   ))}
                 </div>
                 <div className="flex gap-3 mt-6">
-                  <a
+                  <motion.a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-4 py-2 bg-white text-blue-600 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     View Live
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-4 py-2 border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     View Code
-                  </a>
+                  </motion.a>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

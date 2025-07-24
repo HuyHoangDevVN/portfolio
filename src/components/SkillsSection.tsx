@@ -21,6 +21,8 @@ import {
   faPython as faPythonBrand,
 } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useRef } from "react";
+import Section from "./Section";
+import { motion } from "framer-motion";
 
 const iconMap: Record<string, unknown> = {
   faLaptopCode,
@@ -82,12 +84,12 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
   }, []);
 
   return (
-    <section
+    <Section
       id="skills"
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 fade-in">
+        <div className="text-center mb-16">
           <h2 className="section-title text-3xl md:text-4xl font-bold mb-4">
             Skills & Technologies
           </h2>
@@ -100,10 +102,17 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
           id="skills-container"
         >
           {skills.map((skillGroup, idx) => (
-            <div
-              className="card p-6 slide-in-left"
+            <motion.div
+              className="card p-6"
               key={skillGroup.category}
-              style={{ transitionDelay: `${idx * 0.1}s` }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0 10px 15px -3px rgba(59,130,246,0.1)",
+              }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <div className="flex items-center mb-6">
                 <div
@@ -141,10 +150,10 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

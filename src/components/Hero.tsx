@@ -7,6 +7,8 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { useRef } from "react";
+import Section from "./Section";
+import { motion } from "framer-motion";
 
 interface HeroProps {
   name: string;
@@ -34,10 +36,10 @@ export default function Hero({
 }: HeroProps) {
   // For scroll/animation effects, you could use refs or a library like framer-motion
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+    <Section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="fade-in">
+          <div>
             <div className="mb-6">
               <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                 Hi, I'm{" "}
@@ -53,40 +55,56 @@ export default function Hero({
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mb-8">
-              <button className="btn-primary" onClick={onContactClick}>
+              <motion.button
+                className="btn-primary"
+                onClick={onContactClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 Get In Touch
-              </button>
-              <button className="btn-secondary" onClick={onDownloadCV}>
+              </motion.button>
+              <motion.button
+                className="btn-secondary"
+                onClick={onDownloadCV}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <FontAwesomeIcon icon={faDownload} className="mr-2" />
                 Download CV
-              </button>
+              </motion.button>
             </div>
             <div className="flex gap-4">
-              <a
+              <motion.a
                 href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 card flex items-center justify-center hover:text-blue-500 transition-colors"
+                whileHover={{ scale: 1.15, rotate: -8 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FontAwesomeIcon icon={faLinkedin} className="text-xl" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={social.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 card flex items-center justify-center hover:text-gray-800 transition-colors"
+                whileHover={{ scale: 1.15, rotate: 8 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FontAwesomeIcon icon={faGithub} className="text-xl" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 card flex items-center justify-center hover:text-blue-400 transition-colors"
+                whileHover={{ scale: 1.15, rotate: 8 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <FontAwesomeIcon icon={faTwitter} className="text-xl" />
-              </a>
+              </motion.a>
             </div>
           </div>
           <div className="slide-in-right">
@@ -142,6 +160,6 @@ export default function Hero({
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
