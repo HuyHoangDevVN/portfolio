@@ -9,7 +9,7 @@ import SkillsSection from "../components/SkillsSection";
 import SuccessMessage from "../components/SuccessMessage";
 import { portfolioData } from "../data/portfolio";
 
-export default function Home() {
+export default function Page() {
   const [successMsg, setSuccessMsg] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
 
