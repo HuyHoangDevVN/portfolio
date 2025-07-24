@@ -1,14 +1,13 @@
 "use client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faDownload } from "@fortawesome/free-solid-svg-icons";
 import {
-  faLinkedin,
   faGithub,
+  faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { useRef } from "react";
-import Section from "./Section";
+import { faDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import Section from "./Section";
 
 interface HeroProps {
   name: string;
@@ -42,7 +41,7 @@ export default function Hero({
           <div>
             <div className="mb-6">
               <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Hi, I'm{" "}
+                Hi, I&apos;m{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
                   {name}
                 </span>
