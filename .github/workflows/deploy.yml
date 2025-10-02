@@ -1,0 +1,33 @@
+name: Deploy via SSH to Windows Server
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Setup SSH config
+        run: |
+          mkdir -p ~/.ssh
+          echo "Host ssh-windows-server
+            HostName ssh-windows-server.aiotlab.edu.vn
+            ProxyCommand cloudflared access ssh --hostname %h
+            User Administrator
+            Port 22
+            IdentityFile ~/.ssh/id_rsa" > ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
+      - name: Deploy via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no ssh-windows-server "echo Hello from GitHub Actions && whoami && dir C:\\Users\\Administrator"
