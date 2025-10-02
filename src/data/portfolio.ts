@@ -14,7 +14,7 @@ export const portfolioData = {
     },
     stats: {
       experience: "1+",
-      projects: "150+",
+      projects: "50+",
       clients: "50+",
       successRate: "99%",
     },
