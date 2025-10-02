@@ -28,12 +28,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "Host ssh-windows-server
             HostName ssh-windows-server.aiotlab.edu.vn
-            ProxyCommand cloudflared access ssh --hostname %h
             User Administrator
             Port 22
-            IdentityFile ~/.ssh/id_rsa" > ~/.ssh/config
+          " > ~/.ssh/config
           chmod 600 ~/.ssh/config
-
+          
       - name: Deploy via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ssh-windows-server "echo Hello from GitHub Actions && whoami && dir C:\\Users\\Administrator"
